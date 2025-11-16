@@ -1,0 +1,38 @@
+main{
+    height: 93vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-card{
+    width: 40%;
+}
+
+
+
+mat-card-content{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+mat-card-header{
+    display: flex;
+    flex-direction: column;
+}
+
+mat-card-title,mat-card-subtitle{
+    text-align: center;
+}
+
+mat-card-actions{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+mat-card-actions button, mat-card-actions a{
+    width: 100%;
+}

@@ -1,0 +1,31 @@
+.btn-back {
+    padding: 2vh;
+}
+
+main {
+    height: 93vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-card {
+    width: 75%;
+}
+
+mat-stepper {
+    min-height: 550px;
+    max-height: 550px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    padding: 2vh;
+}
+
+mat-form-field {
+    width: 50%;
+}
