@@ -1,0 +1,37 @@
+.alert-container {
+  padding: 8px 4px;
+  min-width: 320px;
+}
+
+.alert-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+
+.alert-icon {
+  font-size: 30px;
+  color: #1976d2; // Primary
+}
+
+.alert-content {
+  margin-top: 10px;
+
+  p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+}
+
+.ok-btn {
+  padding: 6px 18px;
+  font-weight: 600;
+  border-radius: 6px;
+}

@@ -1,0 +1,16 @@
+<div class="alert-container">
+  <div class="alert-header">
+    <mat-icon class="alert-icon">info</mat-icon>
+    <h2>{{ data.title }}</h2>
+  </div>
+
+  <mat-dialog-content class="alert-content">
+    <p>{{ data.message }}</p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" class="ok-btn" (click)="dialogRef.close()">
+      Aceptar
+    </button>
+  </mat-dialog-actions>
+</div>

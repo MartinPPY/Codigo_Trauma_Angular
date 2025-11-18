@@ -4,18 +4,18 @@
             <mat-card-title>Inicio de sesión</mat-card-title>
             <mat-card-subtitle>Ingresa tus credenciales para acceder</mat-card-subtitle>
         </mat-card-header>
-        <form>
+        <form [formGroup]="loginForm" (ngSubmit)="logIn()">
             <mat-card-content>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Nombre de usuario:</mat-label>
-                    <input matInput="outlined">
+                    <input matInput="outlined" formControlName="username">
                     <mat-error> Usuario invalido </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Contraseña:</mat-label>
-                    <input matInput [type]="hide() ? 'password' : 'text'" />
+                    <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password" />
                     <button matIconButton matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
                         [attr.aria-pressed]="hide()" type="button">
                         <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -26,7 +26,11 @@
             </mat-card-content>
 
             <mat-card-actions>
-                <button matButton="filled">Iniciar sesión</button>
+                @if (isLoading) {
+                    <mat-spinner></mat-spinner>
+                }@else{
+                <button matButton="filled" type="submit">Iniciar sesión</button>
+                }
                 <a matButton="text" routerLink="/auth/register">Registrarme</a>
             </mat-card-actions>
         </form>
