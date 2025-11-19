@@ -17,7 +17,10 @@ export interface RegisterRequest {
     phone: number,
     password: string,
     email: string
+}
 
-
-
+export interface RegisterErrorResponse {
+    error: {
+        message: string
+    }
 }

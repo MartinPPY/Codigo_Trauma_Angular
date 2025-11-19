@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Alert } from '../../services/alert';
 import { Auth } from '../../services/auth';
-import { RegisterRequest } from '../auth.models';
+import { RegisterErrorResponse, RegisterRequest } from '../auth.models';
 
 @Component({
   selector: 'app-register',
@@ -99,8 +99,9 @@ export class Register {
         this.isLoading = false
         stepper.next()
       },
-      error: () => {
-        this._alertService.alert('Error', '')
+      error: (err: RegisterErrorResponse) => {
+        this.isLoading = false
+        this._alertService.alert('Error', err.error.message)
       },
       complete: () => {
         this.isLoading = false
