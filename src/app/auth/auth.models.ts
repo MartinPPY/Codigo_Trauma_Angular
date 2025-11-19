@@ -9,3 +9,15 @@ export interface loginResponseError {
     error: string,
     message: string
 }
+
+export interface RegisterRequest {
+    username: string,
+    name: string,
+    lastname: string,
+    phone: number,
+    password: string,
+    email: string
+
+
+
+}
