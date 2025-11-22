@@ -3,6 +3,7 @@ import { Auth } from './auth/auth';
 import { Login } from './auth/login/login';
 import { Register } from './auth/register/register';
 import { Admin } from './admin/admin';
+import { Dashboard } from './admin/dashboard/dashboard';
 
 export const routes: Routes = [
     {
@@ -21,6 +22,10 @@ export const routes: Routes = [
     },
     {
         path: 'admin',
-        component: Admin
+        component: Admin,
+        children: [
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+            { path: 'dashboard', component: Dashboard }
+        ]
     }
 ];

@@ -9,6 +9,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogActions, MatDialogContent } from '@angular/material/dialog';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 
 
@@ -25,11 +27,13 @@ import { MatDialogActions, MatDialogContent } from '@angular/material/dialog';
     MatProgressSpinnerModule,
     MatToolbarModule,
     MatDialogContent,
-    MatDialogActions
+    MatDialogActions,
+    MatSidenavModule,
+    MatListModule
 
   ],
   exports: [MatButtonModule, MatCardModule, MatInputModule,
     MatFormFieldModule, MatIconModule, MatStepperModule, MatProgressSpinnerModule, MatToolbarModule, MatDialogContent,
-    MatDialogActions]
+    MatDialogActions,MatSidenavModule,MatListModule]
 })
 export class MaterialModuleModule { }

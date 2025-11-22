@@ -65,6 +65,7 @@ export class Login {
 
       },
       error: (err: loginResponseError) => {
+        this.isLoading = false
         this._alertService.alert('Error', err.error)
       },
       complete: () => {
