@@ -11,6 +11,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogActions, MatDialogContent } from '@angular/material/dialog';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -29,11 +31,13 @@ import { MatListModule } from '@angular/material/list';
     MatDialogContent,
     MatDialogActions,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatButtonToggleModule,
+    MatSelectModule
 
   ],
   exports: [MatButtonModule, MatCardModule, MatInputModule,
     MatFormFieldModule, MatIconModule, MatStepperModule, MatProgressSpinnerModule, MatToolbarModule, MatDialogContent,
-    MatDialogActions,MatSidenavModule,MatListModule]
+    MatDialogActions, MatSidenavModule, MatListModule, MatButtonToggleModule, MatSelectModule]
 })
 export class MaterialModuleModule { }

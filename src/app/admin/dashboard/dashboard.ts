@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { GeneralModule } from '../../shared/general/general-module';
+import { MaterialModuleModule } from '../../shared/material-module/material-module-module';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [GeneralModule,MaterialModuleModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
