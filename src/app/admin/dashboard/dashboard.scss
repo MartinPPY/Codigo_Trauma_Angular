@@ -1,30 +1,9 @@
-main{
+main {
     padding: 4vh;
 }
 
-.container{
-    display: flex;
-    flex-direction: column;
-    gap: 4vh;
-}
-
-.form-medics{
+.form-medics {
     display: grid;
     grid-template-columns: 60% 40%;
-    gap: 2vh;
-
-    .form{
-        form{
-            mat-card-content{
-                display: flex;
-                flex-direction: column;
-            }
-
-            .severity{
-                width: 22.2%;
-            }
-
-        }
-    }
-
+    gap: 3vh;
 }

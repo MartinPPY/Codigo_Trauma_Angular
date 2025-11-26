@@ -2,82 +2,18 @@
     <h1>Registro de emergencias</h1>
     <p>Gestion de emergencias medicas en tiempo real</p>
 
-    <div class="container">
-        <section class="form-medics">
-            <mat-card class="form" appearance="outlined">
-                <mat-card-header>
-                    <mat-card-title>Registrar emergencia</mat-card-title>
-                    <mat-card-subtitle>Completa los campos para registrar la emergencia</mat-card-subtitle>
-                </mat-card-header>
+    <section class="form-medics">
+        <app-form />
+        <app-medics />
+    </section>
 
-                <form [formGroup]="emergencyForm" (ngSubmit)="registerEmergency()">
-                    <mat-card-content>
-                        <mat-form-field appearance="outline">
-                            <mat-label>Descripcion de la emergencia:</mat-label>
-                            <textarea matInput formControlName="description" ></textarea>
-                        </mat-form-field>
-
-                        <mat-form-field appearance="outline">
-                            <mat-label>Cantidad de victimas:</mat-label>
-                            <input matInput type="number" formControlName="victims">
-                        </mat-form-field>
-
-                        <mat-form-field appearance="outline">
-                            <mat-label>Severidad:</mat-label>
-                            <mat-select formControlName="severity">
-                                <mat-option value="LOW"> Baja </mat-option>
-                                <mat-option value="MEDIUM"> Media </mat-option>
-                                <mat-option value="HIGH"> Alta </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-
-
-                        <mat-label>Asignar medicos:</mat-label>
-                        <mat-selection-list>
-                            <mat-list-option> Sexo Ramirez - Disponible </mat-list-option>
-                        </mat-selection-list>
-
-
-
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button matButton="filled" type="submit"> Registrar emergencia </button>
-                    </mat-card-actions>
-                </form>
-
-            </mat-card>
-
-
-            <mat-card appearance="outlined">
-                <mat-card-header>
-                    <mat-card-title>Medicos disponibles</mat-card-title>
-                    <mat-card-subtitle>3 de 4 Medicos disponibles</mat-card-subtitle>
-                </mat-card-header>
-
-                <mat-card-content>
-                    <mat-list>
-                        <mat-list-item>
-                            <div matListItemMeta>
-                                <mat-icon>boy</mat-icon>
-                            </div>
-                            <h3 matListItemTitle> Dr. Sexo Ramirez </h3>
-                            <span matListItemLine> Disponible </span>
-                        </mat-list-item>
-                    </mat-list>
-                </mat-card-content>
-
-
-            </mat-card>
-        </section>
-
-        <section class="emergencies">
-            <mat-card appearance="outlined">
-                <mat-card-header>
-                    <mat-card-title>Emergencias registradas</mat-card-title>
-                    <mat-card-subtitle>0 Emergencias registradas</mat-card-subtitle>
-                </mat-card-header>
-            </mat-card>
-        </section>
-    </div>
+    <section class="emergencies">
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <mat-card-title>Emergencias registradas</mat-card-title>
+                <mat-card-subtitle>0 Emergencias registradas</mat-card-subtitle>
+            </mat-card-header>
+        </mat-card>
+    </section>
 
 </main>

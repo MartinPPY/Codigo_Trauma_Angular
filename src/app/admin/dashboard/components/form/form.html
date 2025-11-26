@@ -1,0 +1,54 @@
+<mat-card class="form" appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>Registrar emergencia</mat-card-title>
+        <mat-card-subtitle>Completa los campos para registrar la emergencia</mat-card-subtitle>
+    </mat-card-header>
+
+    <form [formGroup]="emergencyForm" (ngSubmit)="registerEmergency()">
+        <mat-card-content>
+            <mat-form-field appearance="outline">
+                <mat-label>Descripcion de la emergencia:</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Cantidad de victimas:</mat-label>
+                <input matInput type="number" formControlName="victims">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Severidad:</mat-label>
+                <mat-select formControlName="severity">
+                    <mat-option value="LOW"> Baja </mat-option>
+                    <mat-option value="MEDIUM"> Media </mat-option>
+                    <mat-option value="HIGH"> Alta </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+            <mat-label>Asignar medicos:</mat-label>
+            @if (adminService.isLoading()) {
+            cargando...
+            }@else {
+            <mat-paginator [length]="adminService.medics().length" [pageSize]="pageSizeMedicsForm()"
+                [pageIndex]="pageIndexMedicsForm()" [pageSizeOptions]="[5, 10, 25]" (page)="onPageMedicForm($event)">
+            </mat-paginator>
+
+            <mat-selection-list (selectionChange)="onSelectionChange($event)">
+                @for (item of pageMedicsForm(); track $index) {
+                @if(item.availability){
+                <mat-list-option [value]="item"> {{item.name}} {{item.lastname}} - Disponible </mat-list-option>
+                }
+                }
+            </mat-selection-list>
+            }
+
+
+
+        </mat-card-content>
+        <mat-card-actions>
+            <button matButton="filled" type="submit"> Registrar emergencia </button>
+        </mat-card-actions>
+    </form>
+
+</mat-card>

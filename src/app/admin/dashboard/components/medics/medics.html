@@ -1,0 +1,31 @@
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>Medicos disponibles</mat-card-title>
+        <mat-card-subtitle>{{adminService.medicsActive()}} de {{adminService.medics().length}} Medicos
+            disponibles</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        @if(adminService.isLoading()){
+        cargando...
+        }@else {
+        <mat-paginator [length]="adminService.medics().length" [pageSize]="pageSizeMedicsList()"
+            [pageSizeOptions]="[8]" [pageIndex]="pageIndexMedicsList()" (page)="onPageMedicList($event)">
+        </mat-paginator>
+
+        <mat-list>
+            @for (item of pageMedicsList(); track $index) {
+            <mat-list-item>
+                <div matListItemMeta>
+                    <mat-icon>boy</mat-icon>
+                </div>
+                <h3 matListItemTitle> Dr. {{item.name}} {{item.lastname}} </h3>
+                <span matListItemLine> {{item.availability ? 'Disponible' : 'No disponible'}} </span>
+            </mat-list-item>
+            }
+        </mat-list>
+        }
+    </mat-card-content>
+
+
+</mat-card>
