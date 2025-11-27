@@ -30,9 +30,38 @@ mat-card-content {
         }
 
         .severity {
+            span {
+                padding: 3px;
+                width: 100%;
+                border-radius: 2vh;
+            }
+
             .high {
-                border: 1px rgb(49, 145, 176) solid;
-                background-color: lightblue;
+                border: 1px pink solid;
+                background-color: red;
+                color: white;
+            }
+
+            .medium {
+                border: 1px solid lightyellow;
+                background-color: yellow;
+            }
+
+            .low {
+                border: 1px solid lightgreen;
+                background-color: green;
+            }
+        }
+
+        .status {
+            span {
+                padding: 3px;
+                width: 100%;
+                border-radius: 2vh;
+            }
+            .pending {
+                border: 1px rgb(255, 196, 0) solid;
+                background-color: yellow;
             }
         }
 
@@ -44,21 +73,23 @@ mat-card-content {
         }
     }
 
-    .created-updated{
+    .created-updated {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2vh;
-        div{
+
+        div {
             display: flex;
             flex-direction: column;
         }
     }
 
-    .doctors{
-        .medics{
+    .doctors {
+        .medics {
             display: flex;
             gap: 2vh;
-            span{
+
+            span {
                 margin-top: 1vh;
                 border-radius: 2vh;
                 padding: 1vh;

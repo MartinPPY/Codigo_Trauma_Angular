@@ -14,12 +14,18 @@
             <div class="severity-status-victims">
                 <div class="severity">
                     @if (item.severity == "HIGH") {
-                    <span>Alta</span>
+                    <span class="high">Alta</span>
+                    }
+                    @if (item.severity == "MEDIUM") {
+                    <span class="medium">Media</span>
+                    }
+                    @if (item.severity == "LOW") {
+                    <span class="low">Baja</span>
                     }
                 </div>
                 <div class="status">
                     @if(item.status === "PENDING"){
-                    <span>Pendiente</span>
+                    <span class="pending">Pendiente</span>
                     }
                 </div>
                 <div class="victims">

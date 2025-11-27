@@ -15,12 +15,6 @@ export class Emergencies implements OnInit {
   adminService = inject(Admin)
   readonly panelOpenState = signal(false);
 
-  constructor() {
-    effect(() => {
-      console.log('Emergencias: ',this.adminService.emergencies.length)
-    })    
-  }
-
   ngOnInit(): void {
     this.adminService.getEmergencies()
   }

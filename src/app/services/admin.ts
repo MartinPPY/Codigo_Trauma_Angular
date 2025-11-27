@@ -50,7 +50,6 @@ export class Admin {
     })
     this._http.get<EmergencyView[]>(`${route}/admin/emergencies`, { headers: header }).subscribe({
       next: (res: EmergencyView[]) => {
-        console.log(res)
         this.emergencies.set(res)
         this.isLoading.set(false)
       },
@@ -70,7 +69,8 @@ export class Admin {
     })
     this._http.post(`${route}/admin/emergencies`, emergency, { headers: header }).subscribe({
       next: (res: any) => {
-        console.log(res)
+        this.getEmergencies()
+        this.getAllMedics()
         
       },
       error: (err: any) => {
