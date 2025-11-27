@@ -1,0 +1,33 @@
+<mat-toolbar>
+    <!-- Botón hamburguesa solo en móviles -->
+    <button mat-icon-button class="menu-btn" (click)="mobileSidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <span>Codigo Trauma</span>
+
+    <!-- Opciones visibles solo en escritorio -->
+
+    <span class="example-spacer"></span>
+
+    <button matButton="text" class="example-icon">
+        Cerrar sesión
+    </button>
+</mat-toolbar>
+
+
+<mat-sidenav-container class="container">
+
+    <!-- SIDENAV solo para móviles -->
+    <mat-sidenav #mobileSidenav class="mobile-sidenav" mode="over">
+        <mat-nav-list>
+            <a mat-list-item>Dashboard</a>
+            <a mat-list-item>Cerrar sesion</a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

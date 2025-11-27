@@ -4,6 +4,8 @@ import { Login } from './auth/login/login';
 import { Register } from './auth/register/register';
 import { Admin } from './admin/admin';
 import { Dashboard } from './admin/dashboard/dashboard';
+import { Medic } from './medic/medic';
+import { Form } from './medic/form/form';
 
 export const routes: Routes = [
     {
@@ -27,5 +29,14 @@ export const routes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: Dashboard }
         ]
+    },
+    {
+        path: 'medic',
+        component: Medic,
+        children: [
+            { path: '', redirectTo: 'form', pathMatch: 'full' },
+            { path: 'form', component: Form }
+        ]
     }
+
 ];

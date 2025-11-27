@@ -1,0 +1,70 @@
+mat-toolbar {
+    background: var(--mat-sys-primary-container);
+}
+
+/* Botón hamburguesa oculto por defecto */
+.menu-btn {
+    display: none;
+}
+
+.menu-options {
+    padding-left: 2vh;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.container {
+    height: 90vh;
+}
+
+
+/* ----------------------- */
+/*   MÓVILES (<768px)      */
+/* ----------------------- */
+@media (max-width: 768px) {
+
+    /* Mostrar botón hamburguesa */
+    .menu-btn {
+        display: inline-flex;
+    }
+
+    /* Ocultar botones del toolbar (dashboard y cerrar sesión) */
+    .menu-options,
+    .example-icon {
+        display: none !important;
+    }
+
+    /* Mostrar el sidenav */
+    .mobile-sidenav {
+        display: block !important;
+        width: 250px;
+    }
+}
+
+
+/* ------------------------- */
+/*   ESCRITORIO (>768px)     */
+/* ------------------------- */
+@media (min-width: 769px) {
+
+    /* Ocultar menú lateral */
+    .mobile-sidenav {
+        display: none !important;
+    }
+
+    /* Botón hamburguesa NO se muestra */
+    .menu-btn {
+        display: none !important;
+    }
+
+    /* Mostrar las opciones del toolbar */
+    .menu-options {
+        display: block !important;
+    }
+
+    .example-icon {
+        display: inline-flex !important;
+    }
+}
