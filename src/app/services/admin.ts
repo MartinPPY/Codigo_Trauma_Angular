@@ -3,7 +3,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { route } from './route';
 import { Alert } from './alert';
 import { Observable } from 'rxjs';
-import { Medic } from '../admin/admin.models';
+import { Emergency, EmergencyView, Medic } from '../admin/admin.models';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,8 @@ export class Admin {
   error = signal<string | null>(null)
 
   medicsActive = computed(() => this.medics().filter(m => m.availability === true).length)
+
+  emergencies = signal<EmergencyView[]>([])
 
   getAllMedics() {
     this.isLoading.set(true)
@@ -37,6 +39,46 @@ export class Admin {
         this.isLoading.set(false)
       }
     })
+  }
+
+  getEmergencies() {
+    this.isLoading.set(true)
+    const token = sessionStorage.getItem('token')
+    const header = new HttpHeaders({
+      'Content-Type': 'Application/json',
+      'Authorization': `Bearer ${token}`
+    })
+    this._http.get<EmergencyView[]>(`${route}/admin/emergencies`, { headers: header }).subscribe({
+      next: (res: EmergencyView[]) => {
+        console.log(res)
+        this.emergencies.set(res)
+        this.isLoading.set(false)
+      },
+      error: (err: any) => {
+        console.error(err)
+        this.isLoading.set(false)
+      }
+    })
+  }
+
+  addEmergency(emergency: Emergency) {
+    this.isLoading.set(true)
+    const token = sessionStorage.getItem('token')
+    const header = new HttpHeaders({
+      'Content-Type': 'Application/json',
+      'Authorization': `Bearer ${token}`
+    })
+    this._http.post(`${route}/admin/emergencies`, emergency, { headers: header }).subscribe({
+      next: (res: any) => {
+        console.log(res)
+        
+      },
+      error: (err: any) => {
+        console.error(err)
+      }
+    })
+
+
   }
 
 

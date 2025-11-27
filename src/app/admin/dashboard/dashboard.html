@@ -1,6 +1,8 @@
 <main>
-    <h1>Registro de emergencias</h1>
+    <h1> <mat-icon class="color-red">warning</mat-icon> Registro de emergencias</h1>
     <p>Gestion de emergencias medicas en tiempo real</p>
+
+    <mat-divider/>
 
     <section class="form-medics">
         <app-form />
@@ -8,12 +10,7 @@
     </section>
 
     <section class="emergencies">
-        <mat-card appearance="outlined">
-            <mat-card-header>
-                <mat-card-title>Emergencias registradas</mat-card-title>
-                <mat-card-subtitle>0 Emergencias registradas</mat-card-subtitle>
-            </mat-card-header>
-        </mat-card>
+        <app-emergencies/>
     </section>
 
 </main>

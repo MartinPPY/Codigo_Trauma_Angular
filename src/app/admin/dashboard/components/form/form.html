@@ -31,7 +31,7 @@
             cargando...
             }@else {
             <mat-paginator [length]="adminService.medics().length" [pageSize]="pageSizeMedicsForm()"
-                [pageIndex]="pageIndexMedicsForm()" [pageSizeOptions]="[5, 10, 25]" (page)="onPageMedicForm($event)">
+                [pageIndex]="pageIndexMedicsForm()"  (page)="onPageMedicForm($event)">
             </mat-paginator>
 
             <mat-selection-list (selectionChange)="onSelectionChange($event)">

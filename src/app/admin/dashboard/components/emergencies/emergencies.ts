@@ -1,18 +1,31 @@
-import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { GeneralModule } from '../../../../shared/general/general-module';
 import { MaterialModuleModule } from '../../../../shared/material-module/material-module-module';
 import { Admin } from '../../../../services/admin';
-import { Alert } from '../../../../services/alert';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PageEvent } from '@angular/material/paginator';
+import { DateFormatPipe } from '../../../../pipes/date-format-pipe';
 
 @Component({
   selector: 'app-emergencies',
-  imports: [GeneralModule, MaterialModuleModule],
+  imports: [GeneralModule, MaterialModuleModule,DateFormatPipe],
   templateUrl: './emergencies.html',
   styleUrl: './emergencies.scss',
 })
-export class Emergencies {
+export class Emergencies implements OnInit {
+
+  adminService = inject(Admin)
+  readonly panelOpenState = signal(false);
+
+  constructor() {
+    effect(() => {
+      console.log('Emergencias: ',this.adminService.emergencies.length)
+    })    
+  }
+
+  ngOnInit(): void {
+    this.adminService.getEmergencies()
+  }
+
+  
 
 
 

@@ -1,0 +1,70 @@
+mat-divider {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.emergency-icon {
+    color: red;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2vh;
+}
+
+mat-card-content {
+    .severity-status-victims {
+        padding: 1vh;
+        display: grid;
+        grid-template-columns: 20% 20% 40%;
+        gap: 2vh;
+
+        div {
+            text-align: center;
+            border-radius: 2vh;
+            padding: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .severity {
+            .high {
+                border: 1px rgb(49, 145, 176) solid;
+                background-color: lightblue;
+            }
+        }
+
+        .victims {
+            border: 1px lightgrey solid;
+            display: flex;
+            gap: 1vh;
+            align-items: center;
+        }
+    }
+
+    .created-updated{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2vh;
+        div{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    .doctors{
+        .medics{
+            display: flex;
+            gap: 2vh;
+            span{
+                margin-top: 1vh;
+                border-radius: 2vh;
+                padding: 1vh;
+                border: 1px rgb(168, 166, 166) solid;
+                background-color: rgb(239, 239, 239);
+            }
+        }
+    }
+}

@@ -1,1 +1,64 @@
-<p>emergencies works!</p>
+<mat-divider />
+<h1> <mat-icon class="emergency-icon"> emergency </mat-icon> Centro de emergencias </h1>
+<p>Monitoreo de emergencias en tiempo real</p>
+<mat-divider />
+<mat-card>
+    <mat-card-content class="container">
+
+        @for (item of adminService.emergencies(); track $index) {
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <mat-card-title> <mat-icon>emergency</mat-icon> {{item.id}}</mat-card-title>
+                <mat-card-subtitle> {{item.description}} </mat-card-subtitle>
+            </mat-card-header>
+            <div class="severity-status-victims">
+                <div class="severity">
+                    @if (item.severity == "HIGH") {
+                    <span>Alta</span>
+                    }
+                </div>
+                <div class="status">
+                    @if(item.status === "PENDING"){
+                    <span>Pendiente</span>
+                    }
+                </div>
+                <div class="victims">
+                    <mat-icon>local_hospital</mat-icon>
+                    <span> {{item.victims}} Victima(s)</span>
+                </div>
+            </div>
+            <mat-divider />
+            <mat-card-content>
+                <div class="created-updated">
+                    <div class="created">
+                        <mat-label>Creada</mat-label>
+                        <span>{{item.creation | dateFormat}}</span>
+                    </div>
+                    <div class="updated">
+                        <mat-label>Actualizada</mat-label>
+                        <span>{{item.updateAt | dateFormat}}</span>
+                    </div>
+                </div>
+                <mat-divider />
+                <div class="doctors">
+                    <mat-label>Doctores responsables</mat-label>
+                    <div class="medics">
+                        @for (item of item.medicNames; track $index) {
+                            <span>{{item}}</span>
+                        }
+                    </div>
+                </div>
+                <mat-divider />
+                <mat-accordion>
+                    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title> <mat-icon>comments</mat-icon> Comentarios </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>{{item.comments}}</p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </mat-card-content>
+        </mat-card>
+        }
+    </mat-card-content>
+</mat-card>

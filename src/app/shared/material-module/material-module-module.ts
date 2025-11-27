@@ -14,6 +14,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 
@@ -35,11 +37,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatListModule,
     MatButtonToggleModule,
     MatSelectModule,
-    MatPaginatorModule
-
+    MatPaginatorModule,
+    MatDividerModule,
+    MatExpansionModule
   ],
   exports: [MatButtonModule, MatCardModule, MatInputModule,
     MatFormFieldModule, MatIconModule, MatStepperModule, MatProgressSpinnerModule, MatToolbarModule, MatDialogContent,
-    MatDialogActions, MatSidenavModule, MatListModule, MatButtonToggleModule, MatSelectModule,MatPaginatorModule]
+    MatDialogActions, MatSidenavModule, MatListModule, MatButtonToggleModule, MatSelectModule, MatPaginatorModule,
+    MatDividerModule,MatExpansionModule]
 })
 export class MaterialModuleModule { }

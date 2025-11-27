@@ -79,7 +79,7 @@ export class Form implements OnInit {
       victims: this.emergencyForm.get('victims')?.value
     }
 
-    console.log(emergency)
+    this.adminService.addEmergency(emergency)
 
 
   }
