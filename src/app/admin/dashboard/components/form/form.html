@@ -37,7 +37,7 @@
             <mat-selection-list (selectionChange)="onSelectionChange($event)">
                 @for (item of pageMedicsForm(); track $index) {
                 @if(item.availability){
-                <mat-list-option [value]="item"> {{item.name}} {{item.lastname}} - Disponible </mat-list-option>
+                <mat-list-option [value]="item.id"> {{item.name}} {{item.lastname}} - Disponible </mat-list-option>
                 }
                 }
             </mat-selection-list>
