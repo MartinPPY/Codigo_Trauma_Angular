@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { route } from './route';
 import { RegisterRequest } from '../auth/auth.models';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ import { RegisterRequest } from '../auth/auth.models';
 export class Auth {
 
   private _http = inject(HttpClient)
+  private _router = inject(Router)
 
 
   logIn(username: string, password: string): Observable<any> {
@@ -23,6 +25,11 @@ export class Auth {
 
   register(registerRequest: RegisterRequest): Observable<any> {
     return this._http.put(`${route}/auth/register-user`, registerRequest)
+  }
+
+  logOut(){
+    sessionStorage.clear()
+    this._router.navigate(['auth/login'])
   }
 
 

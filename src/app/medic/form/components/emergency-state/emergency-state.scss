@@ -1,0 +1,31 @@
+mat-card{
+    height: 100%;
+}
+
+mat-divider{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+form{
+    padding: 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.actual-state{
+    border: 1px lightgrey solid;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    background-color: rgb(236, 236, 236);
+    padding: 2vh;
+    border-radius: 2vh;
+    span{
+        border-radius: 1vh;
+        border: 1px red solid;
+        padding: 5px;
+        text-align: center;
+    }
+}

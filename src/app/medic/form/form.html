@@ -1,1 +1,28 @@
-<p>form works!</p>
+<main>
+    <section class="title">
+        <h1> <mat-icon>emergency</mat-icon> Emergencia N°: 1</h1>
+        <h3>Paciente con hemorragia</h3>
+
+        <div class="severity-status-victims">
+            <div class="severity">
+                <span> Alta </span>
+            </div>
+            <div class="status">
+                <span> Pendiente </span>
+            </div>
+            <div class="victims">
+                <mat-icon>local_hospital</mat-icon>
+                <span>1 Victima(s)</span>
+            </div>
+        </div>
+    </section>
+
+    <mat-divider />
+
+    <section class="emergency">
+        <app-emergency-info />
+        <app-emergency-state />
+        <app-emergency-comment />
+    </section>
+
+</main>

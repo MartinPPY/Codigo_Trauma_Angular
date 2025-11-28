@@ -1,0 +1,45 @@
+.title{
+    padding: 2vh;
+    h1{
+        mat-icon{
+            color: red;
+        }
+    }
+
+    .severity-status-victims{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2vh;
+        width: 30%;
+        div{
+            padding: 2vh;
+            border-radius: 2vh;
+        }
+
+        .severity{
+            border: 1px lightgray solid;
+        }
+
+        .status{
+            border: 1px lightgray solid;
+        }
+
+        .victims{
+            border: 1px lightgray solid;
+            display: flex;
+            align-items: center;
+            gap: 1vh;
+        }
+    }
+
+}
+
+.emergency{
+    padding: 2vh;
+    background-color: rgb(236, 236, 236);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+    align-items: stretch;
+    gap: 2vh;
+}

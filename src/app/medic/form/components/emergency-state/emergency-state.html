@@ -1,0 +1,27 @@
+<mat-card class="emergency-status" appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>Actualizar el estado de la emergencia:</mat-card-title>
+    </mat-card-header>
+    <mat-divider />
+    <mat-card-content>
+        <form class="status-form">
+            <mat-form-field appearance="outline">
+                <mat-label>Actualizar estado:</mat-label>
+                <mat-select>
+                    <mat-option value="PENDING"> Pendiente </mat-option>
+                    <mat-option value="IN PROGRES"> Atendida </mat-option>
+                    <mat-option value="RESOLVED"> Resuelta </mat-option>
+                    <mat-option value="CANCELED"> Cancelada </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div class="actual-state">
+                <mat-label>Estado Actual</mat-label>
+                <span>Pendiente</span>
+            </div>
+
+            <button matButton="filled" >Actualizar estado</button>
+        </form>
+    </mat-card-content>
+
+</mat-card>

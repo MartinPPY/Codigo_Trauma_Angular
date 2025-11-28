@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MaterialModuleModule } from '../shared/material-module/material-module-module';
 import { GeneralModule } from '../shared/general/general-module';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
+import { Auth } from '../services/auth';
 
 @Component({
   selector: 'app-admin',
@@ -10,6 +11,12 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   styleUrl: './admin.scss',
 })
 export class Admin {
+
+  private _authService = inject(Auth)
+
+  logOut(){
+    this._authService.logOut()
+  }
 
 
 

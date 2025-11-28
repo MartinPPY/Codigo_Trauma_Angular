@@ -1,0 +1,53 @@
+mat-card{
+    height: 100%;
+}
+
+mat-divider {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.created-updated {
+    padding: 2vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2vh;
+
+    div {
+        border-radius: 2vh;
+        padding: 2vh;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(236, 236, 236);
+        font-weight: bold;
+        font-weight: 500;
+
+    }
+}
+
+.medics {
+    padding: 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    background-color: rgb(236, 236, 236);
+    border-radius: 2vh;
+
+    mat-label {
+        font-weight: bold;
+    }
+
+    div {
+        display: flex;
+        gap: 2vh;
+        flex-wrap: wrap;
+
+        span {
+            border-radius: 1vh;
+            padding: 5px;
+            border: 1px solid lightgrey;
+            font-weight: bold;
+            font-weight: 500;
+        }
+    }
+}
