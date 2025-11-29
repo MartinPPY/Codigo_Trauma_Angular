@@ -39,7 +39,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatSelectModule,
     MatPaginatorModule,
     MatDividerModule,
-    MatExpansionModule
+    MatExpansionModule,
   ],
   exports: [MatButtonModule, MatCardModule, MatInputModule,
     MatFormFieldModule, MatIconModule, MatStepperModule, MatProgressSpinnerModule, MatToolbarModule, MatDialogContent,

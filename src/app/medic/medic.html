@@ -10,7 +10,7 @@
 
     <span class="example-spacer"></span>
 
-    <button matButton="text" class="example-icon">
+    <button matButton="text" class="example-icon" (click)="authService.logOut()" >
         Cerrar sesión
     </button>
 </mat-toolbar>
@@ -22,7 +22,7 @@
     <mat-sidenav #mobileSidenav class="mobile-sidenav" mode="over">
         <mat-nav-list>
             <a mat-list-item>Dashboard</a>
-            <a mat-list-item>Cerrar sesion</a>
+            <button mat-list-item (click)="authService.logOut()" >Cerrar sesion</button>
         </mat-nav-list>
     </mat-sidenav>
 

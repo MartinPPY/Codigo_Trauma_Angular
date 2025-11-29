@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { route } from './route';
 import { Alert } from './alert';
-import { Observable } from 'rxjs';
 import { Emergency, EmergencyView, Medic } from '../admin/admin.models';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -12,14 +12,13 @@ export class Admin {
 
   private _http = inject(HttpClient)
   private _alertService = inject(Alert)
+  private _snackBar = inject(MatSnackBar)
 
 
   medics = signal<Medic[]>([])
   isLoading = signal<boolean>(false)
   error = signal<string | null>(null)
-
   medicsActive = computed(() => this.medics().filter(m => m.availability === true).length)
-
   emergencies = signal<EmergencyView[]>([])
 
   getAllMedics() {
@@ -35,8 +34,8 @@ export class Admin {
         this.isLoading.set(false)
       },
       error: (err: any) => {
-        console.error(err)
         this.isLoading.set(false)
+        this._alertService.alert('Error','Ha ocurrido un error al obtener los medicos!')
       }
     })
   }
@@ -54,8 +53,8 @@ export class Admin {
         this.isLoading.set(false)
       },
       error: (err: any) => {
-        console.error(err)
         this.isLoading.set(false)
+        this._alertService.alert('Error','Ha ocurrido un error al obtener las emergencias')
       }
     })
   }
@@ -71,14 +70,16 @@ export class Admin {
       next: (res: any) => {
         this.getEmergencies()
         this.getAllMedics()
-        
+        this._snackBar.open("Emergencia agregada!","Deshacer",{
+          duration:3000,
+          verticalPosition:'top'
+        })
       },
       error: (err: any) => {
-        console.error(err)
+        this.isLoading.set(false)
+        this._alertService.alert("Error","Ha ocurrido un error ingresar una emergencia!")
       }
     })
-
-
   }
 
 
