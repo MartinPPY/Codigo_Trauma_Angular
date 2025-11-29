@@ -1,18 +1,42 @@
 <main>
     <section class="title">
-        <h1> <mat-icon>emergency</mat-icon> Emergencia N°: 1</h1>
-        <h3>Paciente con hemorragia</h3>
+        <h1> <mat-icon>emergency</mat-icon> Emergencia N°: {{medicService.emergency()?.id}}</h1>
+        <h3>{{medicService.emergency()?.description}}</h3>
 
         <div class="severity-status-victims">
+
+
             <div class="severity">
-                <span> Alta </span>
+                @if (medicService.emergency()?.severity == "HIGH") {
+                <span class="high"> Alta </span>
+                }
+                @if (medicService.emergency()?.severity == "MEDIUM") {
+                <span class="medium"> Media </span>
+                }
+                @if (medicService.emergency()?.severity == "LOW") {
+                <span class="low"> Baja </span>
+                }
             </div>
+
+
             <div class="status">
-                <span> Pendiente </span>
+                @if (medicService.emergency()?.status == "PENDING") {
+                <span class="pending"> Pendiente </span>
+                }
+                @if (medicService.emergency()?.status == "IN PROGRES") {
+                <span class="in-progres"> Atendida </span>
+                }
+                @if (medicService.emergency()?.status == "RESOLVED") {
+                <span class="resolved"> Resuelta </span>
+                }
+                @if (medicService.emergency()?.status == "CANCELED") {
+                <span class="canceled"> Cancelada </span>
+                }
             </div>
+
             <div class="victims">
                 <mat-icon>local_hospital</mat-icon>
-                <span>1 Victima(s)</span>
+                <span>{{medicService.emergency()?.victims}} Victima(s)</span>
             </div>
         </div>
     </section>
@@ -20,9 +44,9 @@
     <mat-divider />
 
     <section class="emergency">
-        <app-emergency-info />
-        <app-emergency-state />
-        <app-emergency-comment />
+        <app-emergency-info [emergency]="medicService.emergency" />
+        <app-emergency-state [emergency]="medicService.emergency" />
+        <app-emergency-comment [emergency]="medicService.emergency"  />
     </section>
 
 </main>

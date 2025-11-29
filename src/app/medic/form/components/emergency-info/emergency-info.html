@@ -7,18 +7,19 @@
         <div class="created-updated">
             <div class="created">
                 <mat-label>Fecha de creación</mat-label>
-                <span>10-11-2025</span>
+                <span>{{emergency()!.creation |dateFormat }}</span>
             </div>
             <div class="updated">
                 <mat-label>Fecha de actualización</mat-label>
-                <span>10-11-2025</span>
+                <span>{{emergency()!.updateAt | dateFormat}}</span>
             </div>
         </div>
         <div class="medics">
             <mat-label>Doctores responsables:</mat-label>
             <div class="doctors">
-                <span>Sexo ramirez</span>
-                <span>Sexo ramirez</span>
+                @for (item of emergency()!.medicNames; track $index) {
+                <span>{{item}}</span>
+                }
             </div>
         </div>
     </mat-card-content>

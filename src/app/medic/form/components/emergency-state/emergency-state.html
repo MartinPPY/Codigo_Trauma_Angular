@@ -4,10 +4,10 @@
     </mat-card-header>
     <mat-divider />
     <mat-card-content>
-        <form class="status-form">
+        <form class="status-form" [formGroup]="stateForm" (ngSubmit)="updateState(emergency()!.id)">
             <mat-form-field appearance="outline">
                 <mat-label>Actualizar estado:</mat-label>
-                <mat-select>
+                <mat-select formControlName="state">
                     <mat-option value="PENDING"> Pendiente </mat-option>
                     <mat-option value="IN PROGRES"> Atendida </mat-option>
                     <mat-option value="RESOLVED"> Resuelta </mat-option>
@@ -17,10 +17,21 @@
 
             <div class="actual-state">
                 <mat-label>Estado Actual</mat-label>
-                <span>Pendiente</span>
+                @if (emergency()?.status == "PENDING") {
+                <span class="pending"> Pendiente </span>
+                }
+                @if (emergency()?.status == "IN PROGRES") {
+                <span class="in-progres"> Atendida </span>
+                }
+                @if (emergency()?.status == "RESOLVED") {
+                <span class="resolved"> Resuelta </span>
+                }
+                @if (emergency()?.status == "CANCELED") {
+                <span class="canceled"> Cancelada </span>
+                }
             </div>
 
-            <button matButton="filled" >Actualizar estado</button>
+            <button matButton="filled" type="submit">Actualizar estado</button>
         </form>
     </mat-card-content>
 

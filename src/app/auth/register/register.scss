@@ -33,3 +33,9 @@ mat-form-field {
 .register-options{
     margin-top: 2vh;
 }
+
+@media (max-width:931px){
+    mat-form-field{
+        width: 100%;
+    }
+}

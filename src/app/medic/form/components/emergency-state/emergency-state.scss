@@ -1,20 +1,20 @@
-mat-card{
+mat-card {
     height: 100%;
 }
 
-mat-divider{
+mat-divider {
     margin-top: 2vh;
     margin-bottom: 2vh;
 }
 
-form{
+form {
     padding: 2vh;
     display: flex;
     flex-direction: column;
     gap: 2vh;
 }
 
-.actual-state{
+.actual-state {
     border: 1px lightgrey solid;
     display: flex;
     flex-direction: column;
@@ -22,10 +22,33 @@ form{
     background-color: rgb(236, 236, 236);
     padding: 2vh;
     border-radius: 2vh;
-    span{
+
+    span {
         border-radius: 1vh;
-        border: 1px red solid;
         padding: 5px;
         text-align: center;
+    }
+
+    .pending {
+        border: 1px rgb(255, 196, 0) solid;
+        background-color: yellow;
+    }
+
+    .in-progres {
+        border: 1px solid rgb(0, 0, 242);
+        background-color: blue;
+        color: white;
+    }
+
+    .resolved {
+        border: 1px darkgreen solid;
+        background-color: green;
+        color: white;
+    }
+
+    .canceled {
+        border: 1px darkred solid;
+        color: white;
+        background-color: red;
     }
 }

@@ -24,6 +24,7 @@ export class Register {
   error: boolean = false
   isLoading: boolean = false
 
+
   emailVerification: FormGroup = this._fb.group({
     email: ['', [Validators.email, Validators.required]]
   })
@@ -108,8 +109,23 @@ export class Register {
       }
 
     })
-
   }
+
+  isMobileOrTablet(): boolean {
+    const ua = navigator.userAgent;
+
+    // Detectar tablet
+    const isTablet =
+      /iPad|Tablet|PlayBook|Silk/i.test(ua) ||
+      (/Android/i.test(ua) && !/Mobile/i.test(ua));
+
+    // Detectar móvil
+    const isMobile =
+      /Mobi|iPhone|Android/i.test(ua);
+
+    return isMobile || isTablet;
+  }
+
 
 
 }

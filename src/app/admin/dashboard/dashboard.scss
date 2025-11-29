@@ -8,14 +8,20 @@ main {
     gap: 3vh;
 }
 
-.emergencies{
+.emergencies {
     margin-top: 3vh;
 }
 
-mat-divider{
+mat-divider {
     margin-bottom: 3vh;
 }
 
-.color-red{
+.color-red {
     color: red;
+}
+
+@media (max-width:1047px) {
+    .form-medics{
+        grid-template-columns: 1fr;
+    }
 }

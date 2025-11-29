@@ -36,3 +36,10 @@ mat-card-actions{
 mat-card-actions button, mat-card-actions a{
     width: 100%;
 }
+
+
+@media (max-width:777px){
+    mat-card{
+        width: 90%;
+    }
+}

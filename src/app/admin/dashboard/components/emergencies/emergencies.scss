@@ -63,6 +63,21 @@ mat-card-content {
                 border: 1px rgb(255, 196, 0) solid;
                 background-color: yellow;
             }
+            .in-progres{
+                border: 1px solid rgb(0, 0, 242);
+                background-color: blue;
+                color: white;
+            }
+            .resolved{
+                border: 1px darkgreen solid;
+                background-color: green;
+                color: white;
+            }
+            .canceled{
+                border: 1px darkred solid;
+                color: white;
+                background-color: red;
+            }
         }
 
         .victims {
@@ -97,5 +112,11 @@ mat-card-content {
                 background-color: rgb(239, 239, 239);
             }
         }
+    }
+}
+
+@media (max-width:1047px) {
+    .container{
+        grid-template-columns: 1fr;
     }
 }

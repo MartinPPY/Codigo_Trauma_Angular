@@ -27,6 +27,15 @@
                     @if(item.status === "PENDING"){
                     <span class="pending">Pendiente</span>
                     }
+                    @if(item.status === "IN PROGRES"){
+                    <span class="in-progres">Atendida</span>
+                    }
+                    @if(item.status === "RESOLVED"){
+                    <span class="resolved">Resuelta</span>
+                    }
+                    @if(item.status === "CANCELED"){
+                    <span class="canceled">Cancelada</span>
+                    }
                 </div>
                 <div class="victims">
                     <mat-icon>local_hospital</mat-icon>

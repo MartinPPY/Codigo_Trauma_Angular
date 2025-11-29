@@ -31,7 +31,7 @@
             cargando...
             }@else {
             <mat-paginator [length]="adminService.medics().length" [pageSize]="pageSizeMedicsForm()"
-                [pageIndex]="pageIndexMedicsForm()"  (page)="onPageMedicForm($event)">
+                [pageIndex]="pageIndexMedicsForm()" (page)="onPageMedicForm($event)">
             </mat-paginator>
 
             <mat-selection-list (selectionChange)="onSelectionChange($event)">
@@ -47,7 +47,8 @@
 
         </mat-card-content>
         <mat-card-actions>
-            <button matButton="filled" type="submit"> Registrar emergencia </button>
+            <button matButton="filled" type="submit" [disabled]="adminService.isLoading()? true : false">
+                {{adminService.isLoading() ? 'cargando...' : 'Registrar emergencia'}} </button>
         </mat-card-actions>
     </form>
 

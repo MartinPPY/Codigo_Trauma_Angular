@@ -6,6 +6,7 @@ import { Admin } from './admin/admin';
 import { Dashboard } from './admin/dashboard/dashboard';
 import { Medic } from './medic/medic';
 import { Form } from './medic/form/form';
+import { NotFound } from './not-found/not-found';
 
 export const routes: Routes = [
     {
@@ -37,6 +38,10 @@ export const routes: Routes = [
             { path: '', redirectTo: 'form', pathMatch: 'full' },
             { path: 'form', component: Form }
         ]
+    },
+    {
+        path: '**',
+        component: NotFound
     }
 
 ];
