@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Deshabilita listado de directorios
+  Options -Indexes
+
+  # Si el archivo o directorio existe, se sirve directamente
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Redirige todo lo demás a index.html (Angular SPA)
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Aumenta los límites típicos para Angular (opcional)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml text/javascript application/javascript application/json
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
