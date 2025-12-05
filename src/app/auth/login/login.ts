@@ -32,48 +32,17 @@ export class Login {
 
   isLoading: boolean = false;
 
-  logIn() {
+  async logIn() {
     this.isLoading = true
 
     if (this.loginForm.get('username')?.hasError('required') || this.loginForm.get('password')?.hasError('required')) {
-      this._alertService.alert('Error', 'Por favor verifica que las credenciales no esten vacias!.')
       this.isLoading = false
       return
     }
-
     const username: string | undefined | null = this.loginForm.get('username')?.value
     const password: string | undefined | null = this.loginForm.get('password')?.value
-
-    this._authService.logIn(username!, password!).subscribe({
-
-      next: (res: loginResponse) => {
-        sessionStorage.setItem('token', res.token)
-        sessionStorage.setItem('username', res.username)
-        switch (res.role) {
-          case '[ROLE_ADMIN]':
-            this._router.navigate(['/admin'])
-            break
-
-          case '[ROLE_MEDIC]':
-            this._router.navigate(['/medic'])
-            break
-
-          default:
-            break
-
-        }
-
-      },
-      error: (err: loginResponseError) => {
-        this.isLoading = false
-        this._alertService.alert('Error', "Error al iniciar sesión")
-      },
-      complete: () => {
-        this.isLoading = false
-      }
-    })
-
-
+    await this._authService.logIn(username!, password!)
+    this.isLoading = false
   }
 
 

@@ -1,8 +1,8 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { GeneralModule } from '../../../../shared/general/general-module';
 import { MaterialModuleModule } from '../../../../shared/material-module/material-module-module';
-import { Admin } from '../../../../services/admin';
 import { PageEvent } from '@angular/material/paginator';
+import { UserService } from '../../../../services/user-service';
 
 @Component({
   selector: 'app-medics',
@@ -12,13 +12,15 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class Medics {
 
-  adminService = inject(Admin)
+  userService = inject(UserService)
+
+  isLoading:boolean = false
 
   pageIndexMedicsList = signal(0)
   pageSizeMedicsList = signal(8)
 
   pageMedicsList = computed(() => {
-    const data = this.adminService.medics()
+    const data = this.userService.medics()
     const start = this.pageIndexMedicsList() * this.pageSizeMedicsList()
     const end = start + this.pageSizeMedicsList()
     return data.slice(start, end)
@@ -27,12 +29,14 @@ export class Medics {
 
   constructor() {
     effect(() => {
-      console.log('Medicos actualizados:', this.adminService.medics.length)
+      console.log('Medicos actualizados:', this.userService.medics.length)
     })
   }
 
-  ngOnInit(): void {
-    this.adminService.getAllMedics()
+  async ngOnInit() {
+    this.isLoading = true
+    await this.userService.getMedics()
+    this.isLoading = false
   }
 
   onPageMedicList(event: PageEvent) {

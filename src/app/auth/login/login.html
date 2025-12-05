@@ -28,7 +28,7 @@
             <mat-card-actions>
                 <button matButton="filled" type="submit" [disabled]="isLoading ? true: false">{{isLoading ?
                     'Cargando...' : 'Iniciar sesión'}}</button>
-                <a matButton="text" routerLink="/auth/register">Registrarme</a>
+                <a matButton="text" routerLink="/auth/register" [disabled]="isLoading ? true : false">Registrarme</a>
             </mat-card-actions>
         </form>
 

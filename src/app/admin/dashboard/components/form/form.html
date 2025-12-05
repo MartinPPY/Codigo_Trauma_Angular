@@ -9,11 +9,13 @@
             <mat-form-field appearance="outline">
                 <mat-label>Descripcion de la emergencia:</mat-label>
                 <textarea matInput formControlName="description"></textarea>
+                <mat-error>Campo invalido!</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Cantidad de victimas:</mat-label>
                 <input matInput type="number" formControlName="victims">
+                <mat-error>Campo invalido!</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -23,14 +25,15 @@
                     <mat-option value="MEDIUM"> Media </mat-option>
                     <mat-option value="HIGH"> Alta </mat-option>
                 </mat-select>
+                <mat-error>Campo invalido!</mat-error>
             </mat-form-field>
 
 
             <mat-label>Asignar medicos:</mat-label>
-            @if (adminService.isLoading()) {
+            @if (isLoading) {
             cargando...
             }@else {
-            <mat-paginator [length]="adminService.medics().length" [pageSize]="pageSizeMedicsForm()"
+            <mat-paginator [length]="userService.medics().length" [pageSize]="pageSizeMedicsForm()"
                 [pageIndex]="pageIndexMedicsForm()" (page)="onPageMedicForm($event)">
             </mat-paginator>
 
@@ -47,8 +50,8 @@
 
         </mat-card-content>
         <mat-card-actions>
-            <button matButton="filled" type="submit" [disabled]="adminService.isLoading()? true : false">
-                {{adminService.isLoading() ? 'cargando...' : 'Registrar emergencia'}} </button>
+            <button matButton="filled" type="submit" [disabled]="isLoading? true : false">
+                {{isLoading ? 'cargando...' : 'Registrar emergencia'}} </button>
         </mat-card-actions>
     </form>
 

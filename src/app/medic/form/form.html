@@ -1,42 +1,42 @@
 <main>
     <section class="title">
-        <h1> <mat-icon>emergency</mat-icon> Emergencia N°: {{medicService.emergency()?.id}}</h1>
-        <h3>{{medicService.emergency()?.description}}</h3>
+        <h1> <mat-icon>emergency</mat-icon> Emergencia N°: {{emergencyService.emergency()?.id}}</h1>
+        <h3>{{emergencyService.emergency()?.description}}</h3>
 
         <div class="severity-status-victims">
 
 
             <div class="severity">
-                @if (medicService.emergency()?.severity == "HIGH") {
+                @if (emergencyService.emergency()?.severity == "HIGH") {
                 <span class="high"> Alta </span>
                 }
-                @if (medicService.emergency()?.severity == "MEDIUM") {
+                @if (emergencyService.emergency()?.severity == "MEDIUM") {
                 <span class="medium"> Media </span>
                 }
-                @if (medicService.emergency()?.severity == "LOW") {
+                @if (emergencyService.emergency()?.severity == "LOW") {
                 <span class="low"> Baja </span>
                 }
             </div>
 
 
             <div class="status">
-                @if (medicService.emergency()?.status == "PENDING") {
+                @if (emergencyService.emergency()?.status == "PENDING") {
                 <span class="pending"> Pendiente </span>
                 }
-                @if (medicService.emergency()?.status == "IN PROGRES") {
+                @if (emergencyService.emergency()?.status == "IN PROGRES") {
                 <span class="in-progres"> Atendida </span>
                 }
-                @if (medicService.emergency()?.status == "RESOLVED") {
+                @if (emergencyService.emergency()?.status == "RESOLVED") {
                 <span class="resolved"> Resuelta </span>
                 }
-                @if (medicService.emergency()?.status == "CANCELED") {
+                @if (emergencyService.emergency()?.status == "CANCELLED") {
                 <span class="canceled"> Cancelada </span>
                 }
             </div>
 
             <div class="victims">
                 <mat-icon>local_hospital</mat-icon>
-                <span>{{medicService.emergency()?.victims}} Victima(s)</span>
+                <span>{{emergencyService.emergency()?.victims}} Victima(s)</span>
             </div>
         </div>
     </section>
@@ -44,9 +44,9 @@
     <mat-divider />
 
     <section class="emergency">
-        <app-emergency-info [emergency]="medicService.emergency" />
-        <app-emergency-state [emergency]="medicService.emergency" />
-        <app-emergency-comment [emergency]="medicService.emergency"  />
+        <app-emergency-info [emergency]="emergencyService.emergency" />
+        <app-emergency-state [emergency]="emergencyService.emergency" />
+        <app-emergency-comment [emergency]="emergencyService.emergency"  />
     </section>
 
 </main>

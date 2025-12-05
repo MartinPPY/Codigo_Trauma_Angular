@@ -4,6 +4,9 @@
     </mat-card-header>
     <mat-divider />
     <mat-card-content>
+        @if (isLoading) {
+            cargando...
+        }@else {
         <form [formGroup]="commentForm" (ngSubmit)="updateComment(emergency()!.id)">
             <mat-form-field appearance="outline">
                 <mat-label>Agregar comentario:</mat-label>
@@ -11,6 +14,6 @@
             </mat-form-field>
             <button matButton="filled" type="submit"> <mat-icon>message</mat-icon> Actualizar Comentario</button>
         </form>
+        }
     </mat-card-content>
-
 </mat-card>

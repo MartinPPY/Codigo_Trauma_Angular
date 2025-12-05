@@ -4,6 +4,9 @@
     </mat-card-header>
     <mat-divider />
     <mat-card-content>
+        @if (isLoading) {
+        cargando...
+        }@else {
         <form class="status-form" [formGroup]="stateForm" (ngSubmit)="updateState(emergency()!.id)">
             <mat-form-field appearance="outline">
                 <mat-label>Actualizar estado:</mat-label>
@@ -26,13 +29,14 @@
                 @if (emergency()?.status == "RESOLVED") {
                 <span class="resolved"> Resuelta </span>
                 }
-                @if (emergency()?.status == "CANCELED") {
+                @if (emergency()?.status == "CANCELLED") {
                 <span class="canceled"> Cancelada </span>
                 }
             </div>
 
-            <button matButton="filled" type="submit">Actualizar estado</button>
+            <button matButton="filled" type="submit"  [disabled]="isLoadingForm ? true : false">{{isLoadingForm ? 'Cargando....' : 'Actualizar estado'}}</button>
         </form>
+        }
     </mat-card-content>
 
 </mat-card>

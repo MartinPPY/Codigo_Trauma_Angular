@@ -43,47 +43,43 @@ export class Register {
     event.stopPropagation();
   }
 
-  verificateEmail(stepper: MatStepper) {
+  async verificateEmail(stepper: MatStepper) {
     this.isLoading = true
 
     if (this.emailVerification.get('email')?.hasError('required')) {
       this.isLoading = false
-      this._alertService.alert('Error', 'Verifica tu correo electrónico')
+      return
+    }
 
+    if (this.emailVerification.get('email')?.hasError('email')) {
+      this.isLoading = false
       return
     }
 
     this._email = this.emailVerification.get('email')?.value
 
-    this._authService.verificateEmail(this._email).subscribe({
-      next: () => {
-        this.isLoading = false
-        stepper.next()
-      },
-      error: () => {
-        this.isLoading = false
-        this._alertService.alert('Error', 'El correo no existe!')
-      },
-      complete: () => {
-        this.isLoading = false
-      }
-    })
+    await this._authService.verificateEmail(this._email,stepper)
+    const email = this.emailVerification.get('email')?.value
+    this._email = email
+    this.isLoading = false
+
+
 
   }
 
-  register(stepper: MatStepper) {
+  async register(stepper: MatStepper) {
 
     this.isLoading = true
+
+    console.log(this._email)
 
     const fields = Object.keys(this.registerForm.controls)
     for (let i = 0; i < fields.length; i++) {
       const field = fields[i]
       if (this.registerForm.get(field)?.hasError('required')) {
         this.isLoading = false
-        this._alertService.alert('Error', 'Completa todos los campos')
         return
       }
-
     }
 
     const registerRequest: RegisterRequest = {
@@ -95,20 +91,10 @@ export class Register {
       email: this._email
     }
 
-    this._authService.register(registerRequest).subscribe({
-      next: () => {
-        this.isLoading = false
-        stepper.next()
-      },
-      error: (err: RegisterErrorResponse) => {
-        this.isLoading = false
-        this._alertService.alert('Error', err.error.message)
-      },
-      complete: () => {
-        this.isLoading = false
-      }
+    console.log(registerRequest)
 
-    })
+    await this._authService.register(registerRequest,stepper)
+    this.isLoading = false
   }
 
   isMobileOrTablet(): boolean {

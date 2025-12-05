@@ -1,14 +1,14 @@
 <mat-divider />
 <div>
     <h1> <mat-icon class="emergency-icon"> emergency </mat-icon> Centro de emergencias </h1>
-    <button matButton="outlined"  (click)="adminService.getAllMedics(); adminService.getEmergencies()"> <mat-icon>refresh</mat-icon> Actualizar</button>
+    <button matButton="outlined"  (click)="userService.getMedics(); emergencyService.getEmergencies()"> <mat-icon>refresh</mat-icon> Actualizar</button>
 </div>
 <p>Monitoreo de emergencias en tiempo real</p>
 <mat-divider />
 <mat-card>
     <mat-card-content class="container">
 
-        @for (item of adminService.emergencies(); track $index) {
+        @for (item of emergencyService.emergencies(); track $index) {
         <mat-card appearance="outlined">
             <mat-card-header>
                 <mat-card-title> <mat-icon>emergency</mat-icon> {{item.id}}</mat-card-title>

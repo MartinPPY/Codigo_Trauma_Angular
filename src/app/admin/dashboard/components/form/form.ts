@@ -1,13 +1,15 @@
 import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
 import { MaterialModuleModule } from '../../../../shared/material-module/material-module-module';
 import { GeneralModule } from '../../../../shared/general/general-module';
-import { Admin } from '../../../../services/admin';
 import { Alert } from '../../../../services/alert';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { SelectionChange } from '@angular/cdk/collections';
 import { MatSelectionListChange } from '@angular/material/list';
 import { Emergency } from '../../../admin.models';
+import { UserService } from '../../../../services/user-service';
+import { EmergencyService } from '../../../../services/emergency-service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-form',
@@ -17,16 +19,21 @@ import { Emergency } from '../../../admin.models';
 })
 export class Form implements OnInit {
 
-  adminService = inject(Admin)
-  private _alertService = inject(Alert)
+  private _snackBar = inject(MatSnackBar)
   private _fb: FormBuilder = inject(FormBuilder)
+
   selectedMedics: number[] = []
+
+  isLoading:boolean = false
+
+  userService = inject(UserService)
+  emergencyService = inject(EmergencyService)
 
   pageIndexMedicsForm = signal(0)
   pageSizeMedicsForm = signal(5)
 
   pageMedicsForm = computed(() => {
-    const data = this.adminService.medics()
+    const data = this.userService.medics()
     const start = this.pageIndexMedicsForm() * this.pageSizeMedicsForm()
     const end = start + this.pageSizeMedicsForm()
     return data.slice(start, end)
@@ -42,33 +49,36 @@ export class Form implements OnInit {
 
   constructor() {
     effect(() => {
-      console.log('Medicos actualizados:', this.adminService.medics.length)
+      console.log('Medicos actualizados:', this.userService.medics.length)
     })
   }
 
-  ngOnInit(): void {
-    this.adminService.getAllMedics()
+  async ngOnInit() {
+    await this.userService.getMedics()
   }
 
-  registerEmergency() {
+  async registerEmergency() {
+
+    this.isLoading = true
 
     if (this.emergencyForm.get('description')?.hasError('required')) {
-      this._alertService.alert('Error', 'VERIFICA LA DESCRIPCION')
+      this.isLoading = false
       return
     }
 
     if (this.emergencyForm.get('victims')?.hasError('required')) {
-      this._alertService.alert('Error', 'VERIFICA LA CANTIDAD DE VICTIMAS')
+      this.isLoading = false
       return
     }
 
     if (this.emergencyForm.get('severity')?.hasError('required')) {
-      this._alertService.alert('Error', 'VERIFICA LA SEVERIDAD DE LA EMERGENCIA')
+      this.isLoading = false
       return
     }
 
     if(this.selectedMedics.length == 0){
-      this._alertService.alert('Error','NO HAS SELECCIONADO MEDICOS!')
+      this._snackBar.open('No has seleccionado los medicos!','Deshacer')
+      this.isLoading = false
       return
     }
 
@@ -79,7 +89,9 @@ export class Form implements OnInit {
       victims: this.emergencyForm.get('victims')?.value
     }
 
-    this.adminService.addEmergency(emergency)
+    await this.emergencyService.addEmergency(emergency)
+    await this.userService.getMedics()
+    this.isLoading = false
 
 
   }

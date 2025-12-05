@@ -3,7 +3,7 @@ import { GeneralModule } from '../../../../shared/general/general-module';
 import { MaterialModuleModule } from '../../../../shared/material-module/material-module-module';
 import { EmergencyView } from '../../../../admin/admin.models';
 import { FormBuilder } from '@angular/forms';
-import { Medic } from '../../../../services/medic';
+import { EmergencyService } from '../../../../services/emergency-service';
 
 @Component({
   selector: 'app-emergency-comment',
@@ -11,42 +11,43 @@ import { Medic } from '../../../../services/medic';
   templateUrl: './emergency-comment.html',
   styleUrl: './emergency-comment.scss',
 })
-export class EmergencyComment {
+export class EmergencyComment implements OnInit {
 
 
   @Input() emergency!: Signal<EmergencyView | null>
 
   private _fb: FormBuilder = inject(FormBuilder)
-  private _medicService = inject(Medic)
+  private _emergencyService = inject(EmergencyService)
+
+  isLoading:boolean = false
+  isLoadingForm:boolean = false
+
 
   commentForm = this._fb.group({
     comment: ['']
   })
 
-  constructor() {
-    effect(() => {
 
-      const emergency = this.emergency()
-      if (!emergency) return
-
-      console.log(emergency)
-
-      this.commentForm.patchValue(
-        { comment: emergency.comments },
-        { emitEvent: false }
-      );
-
-    })
+  async ngOnInit() {
+    this.isLoading = true
+    await this._emergencyService.getEmergency()
+    this.commentForm.get('comment')?.setValue(this._emergencyService.emergency()!.comments)
+    this.isLoading = false
   }
 
-  updateComment(id: number) {
+  async updateComment(id: number) {
+    this.isLoadingForm = true
     if (this.commentForm.get('comment')!.value!.length == 0) {
+      this.isLoadingForm = false
       return
     }
 
     const comment = this.commentForm.get('comment')!.value || ''
 
-    this._medicService.updateComment(id, comment)
+    await this._emergencyService.updateComment(id, comment)
+    await this._emergencyService.getEmergency()
+
+    this.isLoadingForm = false
 
   }
 

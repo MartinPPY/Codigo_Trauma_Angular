@@ -38,18 +38,22 @@
             <mat-form-field appearance="outline">
               <mat-label>Nombre de usuario:</mat-label>
               <input matInput formControlName="username" required>
+              <mat-error>Nombre de usuario invalido!</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Nombres:</mat-label>
               <input matInput formControlName="name" required>
+              <mat-error>Nombre invalido</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Apellidos:</mat-label>
               <input matInput formControlName="lastname" required>
+              <mat-error>Apellido invalido</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
               <mat-label>Numero de telefono:</mat-label>
               <input matInput formControlName="phone" type="number" required>
+              <mat-error>Numero de telefono invalido!</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -64,8 +68,8 @@
             </mat-form-field>
 
             <div class="register-options">
-              <button matButton matStepperPrevious>Atrás</button>
-              <button matButton>Registrarse</button>
+              <button matButton matStepperPrevious [disabled]="isLoading ? true : false" >Atrás</button>
+              <button matButton [disabled]="isLoading  ? true : false" >{{isLoading ? 'Cargando...' : 'Registrarme'}}</button>
             </div>
           </form>
 

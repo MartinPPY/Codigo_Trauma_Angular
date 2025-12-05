@@ -4,7 +4,7 @@ import { MaterialModuleModule } from '../../shared/material-module/material-modu
 import { EmergencyInfo } from './components/emergency-info/emergency-info';
 import { EmergencyState } from './components/emergency-state/emergency-state';
 import { EmergencyComment } from './components/emergency-comment/emergency-comment';
-import { Medic } from '../../services/medic';
+import { EmergencyService } from '../../services/emergency-service';
 
 @Component({
   selector: 'app-form',
@@ -14,18 +14,14 @@ import { Medic } from '../../services/medic';
 })
 export class Form {
 
-  medicService = inject(Medic)
+  emergencyService = inject(EmergencyService)
+  isLoading:boolean = false
 
-  ngOnInit(): void {
-    const username = sessionStorage.getItem('username') || ''
-    this.medicService.getEmergency(username)
+  async ngOnInit() {
+    this.emergencyService.getEmergency()
   }
 
-  constructor() {
-    effect(() => {
-      console.log(this.medicService.emergency())
-    })
-  }
+  constructor() {}
 
 
 
