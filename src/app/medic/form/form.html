@@ -3,6 +3,8 @@
         <h1> <mat-icon>emergency</mat-icon> Emergencia N°: {{emergencyService.emergency()?.id}}</h1>
         <h3>{{emergencyService.emergency()?.description}}</h3>
 
+        <button matButton="outlined"  (click)="emergencyService.getEmergency()" class="btn-refresh" >Actualizar</button>
+
         <div class="severity-status-victims">
 
 

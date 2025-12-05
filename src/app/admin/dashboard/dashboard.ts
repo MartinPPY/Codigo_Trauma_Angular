@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { GeneralModule } from '../../shared/general/general-module';
 import { MaterialModuleModule } from '../../shared/material-module/material-module-module';
 import { Form } from './components/form/form';
 import { Medics } from './components/medics/medics';
 import { Emergencies } from './components/emergencies/emergencies';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,6 +13,8 @@ import { Emergencies } from './components/emergencies/emergencies';
   styleUrl: './dashboard.scss',
 })
 export class Dashboard {
+
+  userService = inject(UserService)
 
 
 
