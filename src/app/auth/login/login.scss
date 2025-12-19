@@ -10,8 +10,6 @@ mat-card{
     width: 40%;
 }
 
-
-
 mat-card-content{
     display: flex;
     flex-direction: column;
@@ -21,9 +19,6 @@ mat-card-content{
 mat-card-header{
     display: flex;
     flex-direction: column;
-}
-
-mat-card-title,mat-card-subtitle{
     text-align: center;
 }
 

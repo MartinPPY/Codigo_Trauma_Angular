@@ -29,7 +29,7 @@ export class Medics {
 
   constructor() {
     effect(() => {
-      console.log('Medicos actualizados:', this.userService.medics.length)
+      
     })
   }
 

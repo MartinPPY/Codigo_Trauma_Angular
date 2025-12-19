@@ -49,7 +49,7 @@ export class Form implements OnInit {
 
   constructor() {
     effect(() => {
-      console.log('Medicos actualizados:', this.userService.medics.length)
+      
     })
   }
 

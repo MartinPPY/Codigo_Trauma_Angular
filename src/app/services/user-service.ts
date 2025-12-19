@@ -28,7 +28,7 @@ export class UserService {
 
     try {
       const response: Medic[] = await firstValueFrom(this._http.get<Medic[]>(`${route}/users/medics`, { headers: header }))
-      this.medics.set(response)
+      this.medics.set(response.filter(m=>m.name !== null))
 
     } catch (error: any) {
       this._snackBar.open('Ha ocurrido un error al obtener los medicos!', 'Deshacer', { duration: 3000, verticalPosition: 'top' })

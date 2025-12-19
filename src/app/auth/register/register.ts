@@ -91,8 +91,6 @@ export class Register {
       email: this._email
     }
 
-    console.log(registerRequest)
-
     await this._authService.register(registerRequest,stepper)
     this.isLoading = false
   }
