@@ -9,6 +9,7 @@ import { Form } from './medic/form/form';
 import { NotFound } from './not-found/not-found';
 import { adminGuard } from './guards/admin-guard';
 import { Forbidden } from './shared/forbidden/forbidden';
+import { medicGuard } from './guards/medic-guard';
 
 export const routes: Routes = [
     {
@@ -40,7 +41,8 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: 'form', pathMatch: 'full' },
             { path: 'form', component: Form }
-        ]
+        ],
+        canActivate:[medicGuard]
     },
     {
         path: 'forbidden',
