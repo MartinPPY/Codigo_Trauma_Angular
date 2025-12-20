@@ -28,11 +28,33 @@ export class UserService {
 
     try {
       const response: Medic[] = await firstValueFrom(this._http.get<Medic[]>(`${route}/users/medics`, { headers: header }))
-      this.medics.set(response.filter(m=>m.name !== null))
+      this.medics.set(response.filter(m => m.name !== null))
 
     } catch (error: any) {
       this._snackBar.open('Ha ocurrido un error al obtener los medicos!', 'Deshacer', { duration: 3000, verticalPosition: 'top' })
     }
+  }
+
+  async findRole(): Promise<string> {
+    const token = sessionStorage.getItem('token')
+    const header = new HttpHeaders({
+      'Content-Type': 'Application/json',
+      'Authorization': `Bearer ${token}`
+    })
+
+    const username = sessionStorage.getItem('username')
+    let response = ''
+
+    try {
+
+      response = await firstValueFrom(this._http.get<any>(`${route}/users/${username}`,{headers:header}))
+      console.log(response)
+
+    } catch (error) {
+      console.error(error)
+    }
+
+    return response
 
   }
 

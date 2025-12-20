@@ -1,0 +1,42 @@
+.forbidden-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #0f172a;
+    color: #ffffff;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.forbidden-container h1 {
+    font-size: 96px;
+    margin: 0;
+    color: #ef4444;
+}
+
+.forbidden-container h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.forbidden-container p {
+    max-width: 400px;
+    margin-bottom: 20px;
+    color: #cbd5f5;
+}
+
+.forbidden-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #ef4444;
+    color: white;
+}
+
+.forbidden-container button:hover {
+    background-color: #dc2626;
+}

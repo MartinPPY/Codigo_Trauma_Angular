@@ -7,6 +7,8 @@ import { Dashboard } from './admin/dashboard/dashboard';
 import { Medic } from './medic/medic';
 import { Form } from './medic/form/form';
 import { NotFound } from './not-found/not-found';
+import { adminGuard } from './guards/admin-guard';
+import { Forbidden } from './shared/forbidden/forbidden';
 
 export const routes: Routes = [
     {
@@ -29,7 +31,8 @@ export const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: Dashboard }
-        ]
+        ],
+        canActivate: [adminGuard]
     },
     {
         path: 'medic',
@@ -38,6 +41,10 @@ export const routes: Routes = [
             { path: '', redirectTo: 'form', pathMatch: 'full' },
             { path: 'form', component: Form }
         ]
+    },
+    {
+        path: 'forbidden',
+        component: Forbidden,
     },
     {
         path: '**',
