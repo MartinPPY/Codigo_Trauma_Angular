@@ -90,7 +90,6 @@ export class Form implements OnInit {
     }
 
     await this.emergencyService.addEmergency(emergency)
-    await this.userService.getMedics()
     this.isLoading = false
 
 

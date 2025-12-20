@@ -4,6 +4,7 @@ import { MaterialModuleModule } from '../../../../shared/material-module/materia
 import { EmergencyView } from '../../../../admin/admin.models';
 import { FormBuilder } from '@angular/forms';
 import { EmergencyService } from '../../../../services/emergency-service';
+import { Websocket } from '../../../../services/websocket';
 
 @Component({
   selector: 'app-emergency-comment',
@@ -18,9 +19,10 @@ export class EmergencyComment implements OnInit {
 
   private _fb: FormBuilder = inject(FormBuilder)
   private _emergencyService = inject(EmergencyService)
+  private _ws = inject(Websocket)
 
-  isLoading:boolean = false
-  isLoadingForm:boolean = false
+  isLoading: boolean = false
+  isLoadingForm: boolean = false
 
 
   commentForm = this._fb.group({
@@ -29,6 +31,11 @@ export class EmergencyComment implements OnInit {
 
 
   async ngOnInit() {
+    
+    this._ws.connect(async () => {
+      await this._emergencyService.getEmergency()
+      this.commentForm.get('comment')?.setValue(this._emergencyService.emergency()!.comments)
+    })
     this.isLoading = true
     await this._emergencyService.getEmergency()
     this.commentForm.get('comment')?.setValue(this._emergencyService.emergency()!.comments)

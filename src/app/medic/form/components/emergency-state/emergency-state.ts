@@ -4,6 +4,7 @@ import { MaterialModuleModule } from '../../../../shared/material-module/materia
 import { EmergencyView } from '../../../../admin/admin.models';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmergencyService } from '../../../../services/emergency-service';
+import { Websocket } from '../../../../services/websocket';
 
 @Component({
   selector: 'app-emergency-state',
@@ -16,21 +17,30 @@ export class EmergencyState implements OnInit {
   @Input() emergency!: Signal<EmergencyView | null>
   private _fb: FormBuilder = inject(FormBuilder)
   private _emergencyService = inject(EmergencyService)
-  isLoading:boolean = false
-  isLoadingForm:boolean = false
+  isLoading: boolean = false
+  isLoadingForm: boolean = false
+  private _ws = inject(Websocket)
+
+
 
   stateForm = this._fb.group({
     state: ['', [Validators.required]]
   })
 
-  async ngOnInit() {    
+  async ngOnInit() {
+
+    this._ws.connect(async () => {
+      await this._emergencyService.getEmergency()
+      this.stateForm.get('state')?.setValue(this._emergencyService.emergency()!.status)
+    })
+
     this.isLoading = true
     await this._emergencyService.getEmergency()
     this.stateForm.get('state')?.setValue(this._emergencyService.emergency()!.status)
     this.isLoading = false
   }
 
-  async updateState(id:number) {
+  async updateState(id: number) {
     this.isLoadingForm = true
     if (this.stateForm.get('state')?.hasError('required')) {
       this.isLoadingForm = false
@@ -39,7 +49,7 @@ export class EmergencyState implements OnInit {
 
     const state = this.stateForm.get('state')!.value || ''
 
-    await this._emergencyService.updateStatus(id,state)
+    await this._emergencyService.updateStatus(id, state)
     await this._emergencyService.getEmergency()
 
     this.isLoadingForm = false

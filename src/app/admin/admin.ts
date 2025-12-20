@@ -4,6 +4,9 @@ import { GeneralModule } from '../shared/general/general-module';
 import { RouterOutlet } from '@angular/router';
 import { Auth } from '../services/auth';
 import { Websocket } from '../services/websocket';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { EmergencyService } from '../services/emergency-service';
+import { UserService } from '../services/user-service';
 
 @Component({
   selector: 'app-admin',
@@ -15,12 +18,15 @@ export class Admin implements OnInit {
 
   private _authService = inject(Auth)
   private _ws = inject(Websocket)
+  private _snackBar = inject(MatSnackBar)
+  private _emergencyService = inject(EmergencyService)
+  private _userService = inject(UserService)
 
-  emergency = []
-
-  ngOnInit(): void {
-    this._ws.connect(emergency => {
-      console.log('nueva emergencia creada!')
+  ngOnInit() {
+    this._ws.connect(async () => {      
+      await this._emergencyService.getEmergencies()
+      await this._userService.getMedics()
+      this._snackBar.open('Ha ocurrido una actualización de emergencias', 'Deshacer', { duration: 3000, verticalPosition: 'top' })
     })
   }
 
